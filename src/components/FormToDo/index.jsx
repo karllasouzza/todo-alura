@@ -8,8 +8,9 @@ const FormToDo = ({ onSubmit }) => {
   const { selectedTodo } = use(TodoContext);
 
   return (
-    <form action={onSubmit} className="form">
+    <form role="form" action={onSubmit} className="form">
       <TextInput
+        role="textbox"
         placeholder="Digite o item que deseja adicionar"
         name="description"
         defaultValue={selectedTodo?.description}
