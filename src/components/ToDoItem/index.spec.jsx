@@ -47,7 +47,7 @@ describe("ToDoItem", () => {
 
   it("should call removeTodo when delete button is clicked", () => {
     const item = {
-      description: "Test ToDo Item",
+      description: "Test Delete ToDo Item",
       createdAt: new Date().toISOString(),
       completed: false,
     };
@@ -69,7 +69,7 @@ describe("ToDoItem", () => {
 
   it("should call selectTodoForEdit when edit button is clicked", () => {
     const item = {
-      description: "Test ToDo Item",
+      description: "Test Edit ToDo Item",
       createdAt: new Date().toISOString(),
       completed: false,
     };
