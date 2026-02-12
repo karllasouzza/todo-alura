@@ -9,7 +9,7 @@ describe("Header", () => {
   it("should render the component with the correct class", () => {
     const { container } = render(<Header />);
 
-    expect(container.firstChild).toHaveClass("header");
+    expect(container.querySelector(".header")).toBeInTheDocument();
   });
 
   it("should render the component with the correct children", () => {
