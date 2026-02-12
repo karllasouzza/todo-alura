@@ -1,5 +1,7 @@
 import React from "react";
 import { getByRole, render } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+
 import FormToDo from "./index";
 import { TodoContext } from "../TodoProvider/TodoContext";
 
@@ -23,5 +25,22 @@ describe("FormToDo", () => {
 
     expect(getByRole("textbox")).toBeInTheDocument();
     expect(getByRole("textbox")).toHaveValue("Test description");
+  });
+
+  it("should call onSubmit when the form is submitted", async () => {
+    const handleSubmit = jest.fn();
+    const { getByRole } = render(
+      <TodoContext.Provider value={{ selectedTodo: { description: "Test description" } }}>
+        <FormToDo onSubmit={handleSubmit} />
+      </TodoContext.Provider>,
+    );
+
+    const input = getByRole("textbox");
+    await userEvent.clear(input);
+    await userEvent.type(input, "New description");
+    const button = getByRole("button", { name: /Salvar item/i });
+    await userEvent.click(button);
+
+    expect(handleSubmit).toHaveBeenCalled();
   });
 });
