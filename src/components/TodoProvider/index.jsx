@@ -4,16 +4,21 @@ import { TodoContext } from "./TodoContext";
 
 export const TodoProvider = ({ children }) => {
   const [todos, setTodos] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
   const [selectedTodo, setSelectedTodo] = useState(null);
 
   useEffect(() => {
     const fetchTodos = async () => {
+      setIsLoading(true);
       const todosFromApi = await getTodos();
       setTodos(todosFromApi);
     };
 
-    fetchTodos();
+    setTimeout(() => {
+      fetchTodos();
+      setIsLoading(false);
+    }, 5000);
   }, []);
 
   const upsertTodo = async (formData) => {
@@ -70,7 +75,7 @@ export const TodoProvider = ({ children }) => {
   };
 
   return (
-    <TodoContext
+    <TodoContext.Provider
       value={{
         todos,
         upsertTodo,
@@ -84,6 +89,6 @@ export const TodoProvider = ({ children }) => {
       }}
     >
       {children}
-    </TodoContext>
+    </TodoContext.Provider>
   );
 };
