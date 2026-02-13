@@ -47,7 +47,7 @@ describe("ToDoGroup", () => {
     expect(getByText("Test ToDo Group")).toBeInTheDocument();
     expect(queryAllByRole("listitem")).toHaveLength(todos.length);
 
-    if(isLoading) {
+    if (isLoading) {
       expect(getByText("Carregando...")).toBeInTheDocument();
     } else {
       expect(queryByText("Carregando...")).toBeNull();
@@ -73,5 +73,17 @@ describe("ToDoGroup", () => {
 
     expect(firstItem).toBeInTheDocument();
     expect(secondItem).toBeInTheDocument();
+  });
+
+  describe("false positive test", () => {
+    it("should render empty list when todos is empty", () => {
+      const { getByText, queryAllByRole } = render(
+        <TodoContext.Provider value={{}}>
+          <ToDoGroup heading="Test ToDo Group" todos={[]} isLoading={false} />,
+        </TodoContext.Provider>,
+      );
+
+      expect(getByText("Nenhum item encontrado")).toBeInTheDocument();
+    });
   });
 });
