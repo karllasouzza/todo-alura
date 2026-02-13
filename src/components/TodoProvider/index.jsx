@@ -78,6 +78,7 @@ export const TodoProvider = ({ children }) => {
     <TodoContext.Provider
       value={{
         todos,
+        isLoading,
         upsertTodo,
         removeTodo,
         toggleItemCompleted,
