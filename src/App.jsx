@@ -10,9 +10,10 @@ import { Heading } from "./components/Heading";
 import { IconPlus, IconSchool } from "./components/icons";
 import ToDoGroup from "./components/ToDoGroup";
 import { TodoContext } from "./components/TodoProvider/TodoContext";
+import { ToDoCount } from "./components/ToDoCount";
 
 function App() {
-  const { todos, upsertTodo, openTodoFormModal, closeTodoFormModal, isModalOpen, isLoading} =
+  const { todos, upsertTodo, openTodoFormModal, closeTodoFormModal, isModalOpen, isLoading } =
     use(TodoContext);
 
   return (
@@ -21,12 +22,21 @@ function App() {
         <Header>
           <Heading>
             <IconSchool /> Plano de estudos
+            <ToDoCount />
           </Heading>
         </Header>
 
         <ChecklistsWrapper>
-          <ToDoGroup heading="Para estudar" isLoading={isLoading} todos={todos.filter((t) => !t.completed)} />
-          <ToDoGroup heading="Concluído" isLoading={isLoading} todos={todos.filter((t) => t.completed)} />
+          <ToDoGroup
+            heading="Para estudar"
+            isLoading={isLoading}
+            todos={todos.filter((t) => !t.completed)}
+          />
+          <ToDoGroup
+            heading="Concluído"
+            isLoading={isLoading}
+            todos={todos.filter((t) => t.completed)}
+          />
           <Footer>
             <FabButton onClick={openTodoFormModal}>
               <IconPlus />
