@@ -77,7 +77,7 @@ describe("ToDoGroup", () => {
 
   describe("false positive test", () => {
     it("should render empty list when todos is empty", () => {
-      const { getByText, queryAllByRole } = render(
+      const { getByText } = render(
         <TodoContext.Provider value={{}}>
           <ToDoGroup heading="Test ToDo Group" todos={[]} isLoading={false} />,
         </TodoContext.Provider>,

@@ -1,9 +1,6 @@
 import React from "react";
-import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-
 import FormToDo from "./index";
-import { TodoContext } from "../TodoProvider/TodoContext";
 import customRender from "../../helpers/customRender";
 
 describe("FormToDo", () => {
